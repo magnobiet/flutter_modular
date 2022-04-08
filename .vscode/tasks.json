@@ -1,0 +1,320 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "flutterAppName",
+      "description": "Name:",
+      "default": "app_name",
+      "type": "promptString"
+    },
+    {
+      "id": "flutterDeviceId",
+      "description": "Device Id:",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "id": "flutterTestPath",
+      "description": "File Path:",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "type": "pickString",
+      "id": "flutterChannel",
+      "description": "Choose a channel to switch, or leave empty to see the current one",
+      "options": [
+        "master",
+        "dev",
+        "beta",
+        "stable",
+      ],
+      "default": "stable"
+    },
+    {
+      "id": "modularGeneratorName",
+      "description": "Path/Name:",
+      "default": "",
+      "type": "promptString"
+    },
+    {
+      "type": "pickString",
+      "id": "modularGeneratorInput",
+      "description": "What do you want to create?",
+      "options": [
+        "bloc",
+        "cubit",
+        "datasource",
+        "mobx",
+        "module",
+        "page",
+        "repository",
+        "rx_notifier",
+        "service",
+        "triple",
+        "usecase",
+        "widget"
+      ],
+      "default": "widget"
+    },
+    {
+      "type": "pickString",
+      "id": "flutterBuildType",
+      "description": "What type of build do you want?",
+      "options": [
+        "aar",
+        "apk",
+        "appbundle",
+        "bundle",
+        "ios",
+        "ios-framework",
+        "ipa",
+        "macos",
+        "web"
+      ],
+      "default": "apk"
+    },
+    {
+      "type": "pickString",
+      "id": "buildRunnerOptions",
+      "description": "What do you want to run?",
+      "options": [
+        "build",
+        "serve",
+        "test",
+        "watch"
+      ],
+      "default": "build",
+    },
+    {
+      "type": "pickString",
+      "id": "flutterConfig",
+      "description": "What feature do you want to enable/disable?",
+      "options": [
+        "--analytics",
+        "--no-analytics",
+        "--enable-web",
+        "--no-enable-web",
+        "--enable-linux-desktop",
+        "--no-enable-linux-desktop",
+        "--enable-macos-desktop",
+        "--no-enable-macos-desktop",
+        "--enable-windows-desktop",
+        "--no-enable-windows-desktop",
+        "--enable-windows-uwp-desktop",
+        "--no-enable-windows-uwp-desktop",
+        "--single-widget-reload-optimization",
+        "--no-single-widget-reload-optimization",
+        "--enable-android",
+        "--no-enable-android",
+        "--enable-ios",
+        "--no-enable-ios",
+        "--enable-fuchsia",
+        "--no-enable-fuchsia",
+        "--enable-custom-devices",
+        "--no-enable-custom-devices",
+        "--clear-features"
+      ],
+      "default": ""
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Flutter: Create",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "create",
+        "${input:flutterAppName}",
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Version",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "version"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Config",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "config",
+        "${input:flutterConfig}"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Current channel",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "channel"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Switch Channel",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "channel",
+        "${input:flutterChannel}",
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Help",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "--help",
+        "--verbose",
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Doctor",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "doctor",
+        "--verbose",
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Build",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "build",
+        "${input:flutterBuildType}"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Clean",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "clean"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Update",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "update"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Upgrade",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "upgrade"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Downgrade",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "downgrade"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: List emulators",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "emulators"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Logs",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "logs"
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Install dependencies",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "pub",
+        "get"
+      ],
+      "problemMatcher": [],
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Flutter: Clean"
+      ]
+    },
+    {
+      "label": "Build Runner",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "packages",
+        "pub",
+        "run",
+        "build_runner",
+        "${input:buildRunnerOptions}",
+        "--delete-conflicting-outputs",
+      ],
+      "problemMatcher": [],
+      "dependsOn": [
+        "Flutter: Install dependencies"
+      ]
+    },
+    {
+      "label": "Flutter: Analyze",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "analyze",
+        "-d",
+        "${input:flutterDeviceId}",
+      ],
+      "problemMatcher": [],
+    },
+    {
+      "label": "Flutter: Test",
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "test"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Slidy: Generate Full Module",
+      "type": "shell",
+      "command": "slidy generate module ${input:modularGeneratorName} -c",
+    },
+    {
+      "label": "Slidy: Generate",
+      "type": "shell",
+      "command": "slidy generate ${input:modularGeneratorInput} ${input:modularGeneratorName}",
+    }
+  ]
+}
